@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 
 ## Loading and preprocessing the data
@@ -15,7 +20,7 @@ First, we'll display a histogram.
 hist(perday$x, main="Histogram of Steps per day", xlab="Steps per day", ylab="Count")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
 Then a quick calculation of mean and median, ignoring NA.
 
@@ -25,7 +30,7 @@ meanperday <- mean(perday$x, na.rm = T)
 medianperday <- median(perday$x, na.rm = T)
 ```
 
-So the mean is 1.0766189\times 10^{4} and the median is 10765.
+So the mean is 1.0766189 &times; 10<sup>4</sup> and the median is 10765.
 
 ## What is the average daily activity pattern?
 
@@ -34,7 +39,7 @@ perinterval <- aggregate(pdata$steps, by=list(Interval = pdata$interval), FUN="m
 plot(perinterval$Interval,perinterval$x, type="l", main="Daily Activity Pattern", xlab="Interval", ylab="Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
 Which looks reasonable, people start up going to work around 5am, walk around during working hours, then become sedentary in the evening and barely move from midnight on. The interval with most stepping is 835.
 
@@ -55,7 +60,7 @@ newperday <- aggregate(newdata$steps,by=list(Date = newdata$date), FUN=sum)
 hist(newperday$x, main="Histogram of Steps per day", xlab="Steps per day", ylab="Count")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
 And our new mean and median:
 
@@ -65,7 +70,7 @@ newmeanperday <- mean(newperday$x)
 newmedianperday <- median(newperday$x)
 ```
 
-So the mean is 1.0766189\times 10^{4} (a difference of 0 ) and the median is 1.0766189\times 10^{4} (a difference of 1.1886792 ).
+So the mean is 1.0766189 &times; 10<sup>4</sup> (a difference of 0 ) and the median is 1.0766189 &times; 10<sup>4</sup> (a difference of 1.1886792 ).
 
 The impact is (perhaps predictably) pretty small.
 
@@ -88,5 +93,5 @@ g <- qplot(Interval,
 print(g)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
 
