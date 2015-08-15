@@ -9,18 +9,71 @@ output:
 ## Loading and preprocessing the data
 ```{r}
 pdata <- read.csv(unz("activity.zip","activity.csv"))
+perday <- aggregate(pdata$steps,by=list(Date = pdata$date), FUN=sum)
 ```
 
-## What is mean total number of steps taken per day?
+## What is the mean total number of steps taken per day?
+First, we'll display a histogram.
+```{r}
+hist(perday$x)
+```
 
+Then a quick calculation of mean and median, ignoring NA.
 
+```{r}
+meanperday <- mean(perday$x, na.rm = T)
+medianperday <- median(perday$x, na.rm = T)
+```
+
+So the mean is `r meanperday` and the median is `r medianperday`.
 
 ## What is the average daily activity pattern?
+```{r}
+perinterval <- aggregate(pdata$steps, by=list(Interval = pdata$interval), FUN="mean", na.rm = TRUE, na.action="na.pass")
+plot(perinterval$Interval,perinterval$x, type="l")
+```
 
-
+Which looks reasonable, people start up going to work around 5am, walk around during working hours, then become sedentary in the evening and barely move from midnight on. The interval with most stepping is `r perinterval$Interval[perinterval$x == max(perinterval$x)]`.
 
 ## Imputing missing values
 
+The total number of NAs in the data is `r sum(is.na(pdata))`. Of these, `r sum(is.na(pdata$steps))` , all of them, are in the steps column. Let's impute some!
 
+```{r}
+newdata <- pdata
+newdata$steps <- ifelse(is.na(pdata$steps),perinterval$x,pdata$steps)
+```
+
+Our histogram now looks like this:
+```{r}
+newperday <- aggregate(newdata$steps,by=list(Date = newdata$date), FUN=sum)
+```
+
+And our new mean and median:
+
+```{r}
+newmeanperday <- mean(newperday$x)
+newmedianperday <- median(newperday$x)
+```
+
+So the mean is `r newmeanperday` (a difference of `r newmeanperday - meanperday` ) and the median is `r newmedianperday` (a difference of `r newmedianperday - medianperday` ).
+
+The impact is (perhaps predictably) pretty small.
 
 ## Are there differences in activity patterns between weekdays and weekends?
+Let's divide the data between weekdays and weekends with the chron library
+```{r}
+library(chron)
+library(ggplot2)
+newdata$weekday <- ifelse(is.weekend(newdata$date),"weekend","weekday")
+newdata$weekday <- factor(newdata$weekday)
+aggnew <- aggregate(newdata , by=list(Interval = newdata$interval, Daytype = newdata$weekday), FUN=mean)
+g <- qplot(Interval, 
+           steps, 
+           data = aggnew, 
+           color = Daytype, 
+            facets = Daytype ~ .)
+print(g)
+
+```
+
