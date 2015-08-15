@@ -25,7 +25,7 @@ meanperday <- mean(perday$x, na.rm = T)
 medianperday <- median(perday$x, na.rm = T)
 ```
 
-So the mean is `r meanperday` and the median is `r medianperday`.
+So the mean is `r round(meanperday,digits=1)` and the median is `r medianperday`.
 
 ## What is the average daily activity pattern?
 ```{r}
@@ -57,7 +57,7 @@ newmeanperday <- mean(newperday$x)
 newmedianperday <- median(newperday$x)
 ```
 
-So the mean is `r newmeanperday` (a difference of `r newmeanperday - meanperday` ) and the median is `r newmedianperday` (a difference of `r newmedianperday - medianperday` ).
+So the mean is `r round(newmeanperday,digits=1)` (a difference of `r newmeanperday - meanperday` ) and the median is `r newmedianperday` (a difference of `r newmedianperday - medianperday` ).
 
 The impact is (perhaps predictably) pretty small.
 

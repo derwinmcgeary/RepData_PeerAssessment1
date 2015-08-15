@@ -30,7 +30,7 @@ meanperday <- mean(perday$x, na.rm = T)
 medianperday <- median(perday$x, na.rm = T)
 ```
 
-So the mean is 1.0766189 &times; 10<sup>4</sup> and the median is 10765.
+So the mean is 1.07662 &times; 10<sup>4</sup> and the median is 10765.
 
 ## What is the average daily activity pattern?
 
@@ -70,7 +70,7 @@ newmeanperday <- mean(newperday$x)
 newmedianperday <- median(newperday$x)
 ```
 
-So the mean is 1.0766189 &times; 10<sup>4</sup> (a difference of 0 ) and the median is 1.0766189 &times; 10<sup>4</sup> (a difference of 1.1886792 ).
+So the mean is 1.07662 &times; 10<sup>4</sup> (a difference of 0 ) and the median is 1.0766189 &times; 10<sup>4</sup> (a difference of 1.1886792 ).
 
 The impact is (perhaps predictably) pretty small.
 
