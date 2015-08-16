@@ -45,7 +45,7 @@ Which looks reasonable, people start up going to work around 5am, walk around du
 
 ## Imputing missing values
 
-The total number of NAs in the data is 2304. Of these, 2304 , all of them, are in the steps column. Let's impute some!
+The total number of NAs in the data is 2304. Of these, 2304 , all of them, are in the steps column. Let's impute some! I'm going to use the averages for the 5-minute intervals that we calculated in the last section to replace any missing values.
 
 
 ```r

@@ -37,7 +37,7 @@ Which looks reasonable, people start up going to work around 5am, walk around du
 
 ## Imputing missing values
 
-The total number of NAs in the data is `r sum(is.na(pdata))`. Of these, `r sum(is.na(pdata$steps))` , all of them, are in the steps column. Let's impute some!
+The total number of NAs in the data is `r sum(is.na(pdata))`. Of these, `r sum(is.na(pdata$steps))` , all of them, are in the steps column. Let's impute some! I'm going to use the averages for the 5-minute intervals that we calculated in the last section to replace any missing values.
 
 ```{r}
 newdata <- pdata

@@ -236,7 +236,7 @@ plot(perinterval$Interval,perinterval$x, type=&quot;l&quot;, main=&quot;Daily Ac
 
 <h2>Imputing missing values</h2>
 
-<p>The total number of NAs in the data is 2304. Of these, 2304 , all of them, are in the steps column. Let&#39;s impute some!</p>
+<p>The total number of NAs in the data is 2304. Of these, 2304 , all of them, are in the steps column. Let&#39;s impute some! I&#39;m going to use the averages for the 5-minute intervals that we calculated in the last section to replace any missing values.</p>
 
 <pre><code class="r">newdata &lt;- pdata
 newdata$steps &lt;- ifelse(is.na(pdata$steps),perinterval$x,pdata$steps)
