@@ -27,7 +27,20 @@ Then a quick calculation of mean and median, ignoring NA.
 
 ```r
 meanperday <- mean(perday$x, na.rm = T)
+meanperday
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 medianperday <- median(perday$x, na.rm = T)
+medianperday
+```
+
+```
+## [1] 10765
 ```
 
 So the mean is 10766.19 and the median is 10765.
@@ -40,6 +53,14 @@ plot(perinterval$Interval,perinterval$x, type="l", main="Daily Activity Pattern"
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+
+```r
+perinterval$Interval[perinterval$x == max(perinterval$x)]
+```
+
+```
+## [1] 835
+```
 
 Which looks reasonable, people start up going to work around 5am, walk around during working hours, then become sedentary in the evening and barely move from midnight on. The **interval with most stepping** is **835**.
 
@@ -67,7 +88,20 @@ And our new mean and median:
 
 ```r
 newmeanperday <- mean(newperday$x)
+newmeanperday
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 newmedianperday <- median(newperday$x)
+newmedianperday
+```
+
+```
+## [1] 10766.19
 ```
 
 So the mean is 10766.19 (a difference of 0 ) and the median is 10766.19 (a difference of 1.1886792 ).
@@ -95,3 +129,4 @@ print(g)
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
 
+The difference is there, but not particularly striking.

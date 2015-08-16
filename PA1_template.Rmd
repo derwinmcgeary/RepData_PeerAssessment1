@@ -22,7 +22,9 @@ Then a quick calculation of mean and median, ignoring NA.
 
 ```{r}
 meanperday <- mean(perday$x, na.rm = T)
+meanperday
 medianperday <- median(perday$x, na.rm = T)
+medianperday
 ```
 
 So the mean is `r format(meanperday, nsmall=1, scientific=FALSE)` and the median is `r format(medianperday,scientific=FALSE)`.
@@ -31,6 +33,7 @@ So the mean is `r format(meanperday, nsmall=1, scientific=FALSE)` and the median
 ```{r}
 perinterval <- aggregate(pdata$steps, by=list(Interval = pdata$interval), FUN="mean", na.rm = TRUE, na.action="na.pass")
 plot(perinterval$Interval,perinterval$x, type="l", main="Daily Activity Pattern", xlab="Interval", ylab="Steps")
+perinterval$Interval[perinterval$x == max(perinterval$x)]
 ```
 
 Which looks reasonable, people start up going to work around 5am, walk around during working hours, then become sedentary in the evening and barely move from midnight on. The **interval with most stepping** is **`r perinterval$Interval[perinterval$x == max(perinterval$x)]`**.
@@ -54,7 +57,9 @@ And our new mean and median:
 
 ```{r}
 newmeanperday <- mean(newperday$x)
+newmeanperday
 newmedianperday <- median(newperday$x)
+newmedianperday
 ```
 
 So the mean is `r format(newmeanperday,nsmall=1, scientific=FALSE)` (a difference of `r newmeanperday - meanperday` ) and the median is `r format(newmedianperday, scientific=FALSE)` (a difference of `r newmedianperday - medianperday` ).
@@ -79,3 +84,4 @@ g <- qplot(Interval,
 print(g)
 ```
 
+The difference is there, but not particularly striking.
